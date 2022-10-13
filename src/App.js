@@ -1,8 +1,42 @@
-import React , {useState} from 'react';
+import React , {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import "./style.css";
 import Hello from './Hello';
 import Timer from './Timer';
+
+const App=()=>{
+  const [title,setTitle]=useState("پر قدرت ادامه میدم: ) قراره یه فرانت کار خفن بشم: ) قول میدم به خودم");
+  const [isLight,setisLight]=useState(false);
+
+  //Charkhe hayat dar component haye tabey!
+  //!!! [isLight] => ba har bar taghir dar isLight useEffect ejra mishe !!! 
+  useEffect(()=>{
+    console.log("UseEffect");
+    return ()=>{
+      //moghey ke component mon baste bashe in ghesmat ejra mishe!
+    }
+  },[isLight])
+
+  const handleSetTitle=()=>{
+    setTitle("Timer")
+  }
+
+  const handleSetisLight=()=>{
+    setisLight(!isLight) //agar false bood true she! agar true bood false she!
+  }
+  
+  return(
+      <div className='main' style={{background:isLight?"#f8f9fa":"#293241"}}>
+        <Hello isLight={isLight} title={title}/>
+        <Timer isLight={isLight} handleSetisLight={handleSetisLight} handleSetTitle={handleSetTitle}/>
+      </div>
+    )
+
+}
+
+export default App;
+
+
 
 // class App extends React.Component {
 //   constructor(){
@@ -33,20 +67,3 @@ import Timer from './Timer';
 //     )
 //   }
 // }
-const App=()=>{
-  const [title,setTitle]=useState("پر قدرت ادامه میدم: ) قراره یه فرانت کار خفن بشم: ) قول میدم به خودم");
-  
-  const handleSetTitle=()=>{
-    setTitle("Timer")
-  }
-  
-  return(
-      <div className='main'>
-        <Hello title={title}/>
-        <Timer handleSetTitle={handleSetTitle}/>
-      </div>
-    )
-
-}
-
-export default App;

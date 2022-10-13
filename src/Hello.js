@@ -6,7 +6,7 @@ class Hello extends React.Component {
   render() {
     console.log(this.props);
       return ( 
-      <h1>
+      <h1 style={{color:this.props.isLight ? "#293241" : "#f8f9fa"}}>
          {this.props.title}
       </h1>
 )
