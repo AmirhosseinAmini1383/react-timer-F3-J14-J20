@@ -66,21 +66,21 @@ class Timer extends React.Component {
           Time it is {`${hour > 9 ? hour : "0" + hour} : ${minute > 9 ? minute : "0" + minute} : ${second > 9 ? second : "0" + second}`} 
         </h2>
         <div>
-          <button className='btn btnChange' onClick={this.props.handleSetTitle} style={{color:this.props.isLight ? "#f8f9fa" : "#293241"}}>
+          <button className='btn btnChange' onClick={this.props.handleSetTitle}>
             Change Text
           </button>
-          <button className='btn btnStart' onClick={this.StartInterval} style={{color:this.props.isLight ? "#f8f9fa" : "#293241"}}>
+          <button className='btn btnStart' onClick={this.StartInterval}>
             Start
           </button>
-          <button className='btn btnStop' onClick={this.StopInterval} style={{color:this.props.isLight ? "#f8f9fa" : "#293241"}}>
+          <button className='btn btnStop' onClick={this.StopInterval}>
             Stop
           </button>
-          <button className='btn btnReset' onClick={this.ResetInterval} style={{color:this.props.isLight ? "#f8f9fa" : "#293241"}}>
+          <button className='btn btnReset' onClick={this.ResetInterval}>
             Reset
           </button>
           <button className='btn btnisLight' onClick={this.props.handleSetisLight}
-            style={{background:this.props.isLight ? "#293241" : "#f8f9fa" , 
-            color:this.props.isLight ? "#f8f9fa" : "#293241"
+            style={{background:this.props.isLight ? "#17202A" : "#f8f9fa" , 
+            color:this.props.isLight ? "#f8f9fa" : "#17202A"
           }}
           >
             {this.props.isLight ? "black" : "white"}

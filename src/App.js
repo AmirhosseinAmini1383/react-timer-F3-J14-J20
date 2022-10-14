@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom/client';
 import "./style.css";
 import Hello from './Hello';
 import Timer from './Timer';
+import TimeList from './TimeList';
 
 const App=()=>{
   const [title,setTitle]=useState("پر قدرت ادامه میدم: ) قراره یه فرانت کار خفن بشم: ) قول میدم به خودم");
   const [isLight,setisLight]=useState(false);
-
+  const [timeArray,setTimeArray]=useState(["20 : 42 : 20" , "05 : 15 : 38"]);
   //Charkhe hayat dar component haye tabey!
   //!!! [isLight] => ba har bar taghir dar isLight useEffect ejra mishe !!! 
   useEffect(()=>{
@@ -27,8 +28,11 @@ const App=()=>{
   
   return(
       <div className='main' style={{background:isLight?"#f8f9fa":"#293241"}}>
-        <Hello isLight={isLight} title={title}/>
+        <Hello title={title}/>
         <Timer isLight={isLight} handleSetisLight={handleSetisLight} handleSetTitle={handleSetTitle}/>
+        <TimeList>
+          {timeArray}
+        </TimeList>
       </div>
     )
 
