@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import "./style.css";
 import Hello from './Hello';
 import Timer from './Timer';
-import TimeList from './TimeList';
 
 const App=()=>{
   const [title,setTitle]=useState("پر قدرت ادامه میدم: ) قراره یه فرانت کار خفن بشم: ) قول میدم به خودم");
@@ -29,10 +28,13 @@ const App=()=>{
   return(
       <div className='main' style={{background:isLight?"#f8f9fa":"#293241"}}>
         <Hello title={title}/>
-        <Timer isLight={isLight} handleSetisLight={handleSetisLight} handleSetTitle={handleSetTitle}/>
-        <TimeList>
-          {timeArray}
-        </TimeList>
+        <Timer
+         isLight={isLight} 
+         handleSetisLight={handleSetisLight} 
+         handleSetTitle={handleSetTitle}
+         timeArray={timeArray}
+         setTimeArray={setTimeArray}
+         />
       </div>
     )
 
