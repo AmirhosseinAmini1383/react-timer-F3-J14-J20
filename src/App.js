@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "./style.css";
 import Hello from "./Hello";
@@ -37,13 +37,35 @@ const App = () => {
   const [title, setTitle] = useState(
     "پر قدرت ادامه میدم: ) قراره یه فرانت کار خفن بشم: ) قول میدم به خودم"
   );
+  const [isLight, setIsLight] = useState(false);
+
+  useEffect(() => {
+    console.log("useEffect");
+    // return () => {
+    //   console.log("وقتی که کامپوننت مون بسته میشه این قسمت اجرا میشه...");
+    // };
+  }, [isLight]);
+
   const handleSetTitle = () => {
-    setTitle("Amirho3einAmini");
+    if (title == "Amirho3ein") {
+      setTitle(
+        "پر قدرت ادامه میدم: ) قراره یه فرانت کار خفن بشم: ) قول میدم به خودم"
+      );
+    } else setTitle("Amirho3ein");
   };
+
+  const handleSetIsLight = () => {
+    setIsLight(!isLight);
+  };
+
   return (
-    <div className="main">
+    <div className="main" style={{ background: isLight ? "White" : "Black" }}>
       <Hello title={title} />
-      <Timer handleSetTitle={handleSetTitle} />
+      <Timer
+        isLight={isLight}
+        handleSetIsLight={handleSetIsLight}
+        handleSetTitle={handleSetTitle}
+      />
     </div>
   );
 };
