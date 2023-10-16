@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./style.css";
 import Hello from "./Hello";
 import Timer from "./Timer";
+import { TestContext } from "./testContext";
 // class App extends React.Component {
 //   constructor() {
 //     super();
@@ -60,16 +61,20 @@ const App = () => {
   };
 
   return (
-    <div className="main" style={{ background: isLight ? "White" : "Black" }}>
-      <Hello title={title} isLight={isLight} />
-      <Timer
-        timeArr={timeArr}
-        setTimeArr={setTimeArr}
-        isLight={isLight}
-        handleSetIsLight={handleSetIsLight}
-        handleSetTitle={handleSetTitle}
-      />
-    </div>
+    <TestContext.Provider value={{ timeArr: timeArr, setTimeArr: setTimeArr }}>
+      <div className="main" style={{ background: isLight ? "White" : "Black" }}>
+        <Hello
+          title={title}
+          isLight={isLight}
+          handleSetIsLight={handleSetIsLight}
+        />
+        <Timer
+          isLight={isLight}
+          handleSetIsLight={handleSetIsLight}
+          handleSetTitle={handleSetTitle}
+        />
+      </div>
+    </TestContext.Provider>
   );
 };
 
