@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./style.css";
-
+import TimeList from "./TimeList";
 var interval;
 class Timer extends React.Component {
   constructor() {
@@ -54,6 +54,16 @@ class Timer extends React.Component {
     });
   };
 
+  handelSaveTime = () => {
+    let hour = this.state.hour;
+    let minute = this.state.minute;
+    let second = this.state.second;
+    let NewTime = `${hour > 9 ? hour : "0" + hour} : ${
+      minute > 9 ? minute : "0" + minute
+    } : ${second > 9 ? second : "0" + second}`;
+    this.props.setTimeArr([...this.props.timeArr, NewTime]);
+  };
+
   render() {
     console.log("render");
     let hour = this.state.hour;
@@ -61,23 +71,39 @@ class Timer extends React.Component {
     let second = this.state.second;
     return (
       <>
-        <h2 className="timer">
+        <h2 className="timer" onClick={this.handelSaveTime}>
           Time it is{" "}
           {`${hour > 9 ? hour : "0" + hour} : ${
             minute > 9 ? minute : "0" + minute
           } : ${second > 9 ? second : "0" + second}`}
         </h2>
         <div>
-          <button className="btn btnChange" onClick={this.props.handleSetTitle}>
+          <button
+            className="btn btnChange"
+            onClick={this.props.handleSetTitle}
+            style={{ color: this.props.isLight ? "White" : "Black" }}
+          >
             Change Text
           </button>
-          <button className="btn btnStart" onClick={this.StartInterval}>
+          <button
+            className="btn btnStart"
+            onClick={this.StartInterval}
+            style={{ color: this.props.isLight ? "White" : "Black" }}
+          >
             Start
           </button>
-          <button className="btn btnStop" onClick={this.StopInterval}>
+          <button
+            className="btn btnStop"
+            onClick={this.StopInterval}
+            style={{ color: this.props.isLight ? "White" : "Black" }}
+          >
             Stop
           </button>
-          <button className="btn btnReset" onClick={this.ResetInterval}>
+          <button
+            className="btn btnReset"
+            onClick={this.ResetInterval}
+            style={{ color: this.props.isLight ? "White" : "Black" }}
+          >
             Reset
           </button>
           <button
@@ -91,6 +117,7 @@ class Timer extends React.Component {
             {this.props.isLight ? "Dark" : "Light"}
           </button>
         </div>
+        <TimeList>{this.props.timeArr}</TimeList>
       </>
     );
   }

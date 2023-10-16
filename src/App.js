@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import "./style.css";
 import Hello from "./Hello";
 import Timer from "./Timer";
-import TimeList from "./TimeList";
 // class App extends React.Component {
 //   constructor() {
 //     super();
@@ -39,7 +38,7 @@ const App = () => {
     "پر قدرت ادامه میدم: ) قراره یه فرانت کار خفن بشم: ) قول میدم به خودم"
   );
   const [isLight, setIsLight] = useState(false);
-  const [timeArr, setTimeArr] = useState(["12:50:31", "13:08:52"]);
+  const [timeArr, setTimeArr] = useState([" 12 : 50 : 31 ", " 13 : 08 : 52 "]);
 
   useEffect(() => {
     console.log("useEffect");
@@ -62,13 +61,14 @@ const App = () => {
 
   return (
     <div className="main" style={{ background: isLight ? "White" : "Black" }}>
-      <Hello title={title} />
+      <Hello title={title} isLight={isLight} />
       <Timer
+        timeArr={timeArr}
+        setTimeArr={setTimeArr}
         isLight={isLight}
         handleSetIsLight={handleSetIsLight}
         handleSetTitle={handleSetTitle}
       />
-      <TimeList>{timeArr}</TimeList>
     </div>
   );
 };
