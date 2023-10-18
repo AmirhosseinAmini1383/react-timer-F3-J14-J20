@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./style.css";
-import TimeList from "./TimeList";
 import { TestContext } from "./testContext";
 var interval;
 class Timer extends React.Component {
@@ -59,12 +58,13 @@ class Timer extends React.Component {
   };
 
   handelSaveTime = () => {
-    let hour = this.state.hour;
-    let minute = this.state.minute;
-    let second = this.state.second;
-    let NewTime = `${hour > 9 ? hour : "0" + hour} : ${
-      minute > 9 ? minute : "0" + minute
-    } : ${second > 9 ? second : "0" + second}`;
+    // let hour = this.state.hour;
+    // let minute = this.state.minute;
+    // let second = this.state.second;
+    // let NewTime = `${hour > 9 ? hour : "0" + hour} : ${
+    //   minute > 9 ? minute : "0" + minute
+    // } : ${second > 9 ? second : "0" + second}`;
+    let NewTime = document.querySelector(".timer").innerHTML;
     this.context.setTimeArr([...this.context.timeArr, NewTime]);
   };
 
@@ -76,7 +76,6 @@ class Timer extends React.Component {
     return (
       <>
         <h2 className="timer" onClick={this.handelSaveTime}>
-          Time it is{" "}
           {`${hour > 9 ? hour : "0" + hour} : ${
             minute > 9 ? minute : "0" + minute
           } : ${second > 9 ? second : "0" + second}`}
@@ -121,7 +120,6 @@ class Timer extends React.Component {
             {this.props.isLight ? "Dark" : "Light"}
           </button>
         </div>
-        <TimeList>{this.context.timeArr}</TimeList>
       </>
     );
   }
